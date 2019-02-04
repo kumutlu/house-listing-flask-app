@@ -15,7 +15,7 @@ html {
   height: 100%;
 }
 .body h1  {
-  text-align: center;
+  text-align: center;  
 }
 #list-container {
   display: flex;
@@ -98,7 +98,7 @@ html {
   flex-direction: row;
   font-size: 20px;
   font-weight: 200;
-  margin: auto auto auto auto;
+  margin: 10px auto 10px auto;
   -webkit-transition-duration: 0.4s;
   transition-duration: 0.4s;
   cursor: pointer;
@@ -171,7 +171,7 @@ html {
 	margin-top: 10px;
 }
 
-.login input[type=button]{
+.login input[type=submit]{
 	width: 260px;
 	height: 35px;
 	background: #fff;
@@ -186,11 +186,11 @@ html {
 	margin-top: 10px;
 }
 
-.login input[type=button]:hover{
+.login input[type=submit]:hover{
 	opacity: 0.8;
 }
 
-.login input[type=button]:active{
+.login input[type=submit]:active{
 	opacity: 0.6;
 }
 
@@ -204,7 +204,7 @@ html {
 	border: 1px solid rgba(255,255,255,0.9);
 }
 
-.login input[type=button]:focus{
+.login input[type=submit]:focus{
 	outline: none;
 }
 

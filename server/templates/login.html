@@ -12,14 +12,17 @@
 
 <body>
   <div id="login-container">
-    <form name="login">
-      <div class="login">
-        <input type="text" placeholder="Username" name="userid"><br>
-        <input type="password" placeholder="Password" name="pswrd"><br>
-        <input type="button" value="Login" />
-      </div>
+    <form name="login" class="login" action="" method = "POST">
+     
+        <input type="text" placeholder="Username" name="username" value="{{
+          request.form.username }}"><br>
+        <input type="password" placeholder="Password" name="password" value="{{
+          request.form.password }}"><br>
+        <input class="button" type="submit" value="Login" />
+   
     </form>
   </div>
+  {% if error %}<h1 class="header"><strong>Error:</strong> {{ error }}</h1>{% endif %}
 </body>
 
 </html>

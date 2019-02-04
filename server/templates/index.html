@@ -15,10 +15,20 @@
         <div>House<span>Listing</span></div>
     </div>
 
+    
     <div>
+        {% if authenticated == False %}
         <a href="/login">
             <button class="button">Login</button>
         </a>
+        {% else %}
+        <a href="/logout">
+            <button class="button">Logout</button>
+        </a>
+        <a href="/houses/addForm">
+            <button class="button">Add house</button>
+        </a>
+        {% endif %}
     </div>
 
     <div id="list-container"></div>
