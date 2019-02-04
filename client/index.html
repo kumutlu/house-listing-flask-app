@@ -11,12 +11,34 @@
 </head>
 
 <body>
-  <div id="list-container">
+    <div class="header">
+        <div>House<span>Listing</span></div>
+    </div>
+    <div > 
+        <button class="button" onclick="myFunction()">Login</button>
+    </div>
 
+    <div id="myDIV">
+            <form name="login">
+		    <div class="login">
+				    <input type="text" placeholder="Username" name="userid"><br>
+				    <input type="password" placeholder="Password" name="pswrd"><br>
+				    <input type="button" onclick="check(this.form)" value="Login"/>
+            </div>
+            </form>
+    </div>
+
+  
+      
   </div>
-
-
+  <div id="list-container"></div>
+ 
   <script src="scripts/index.js"></script>
+
+
+  
+  
+  
 </body>
 
 </html>

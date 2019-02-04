@@ -2,10 +2,18 @@ from flask import Flask, render_template, request, g, jsonify
 import json
 import sqlite3
 from flask_cors import CORS
+
+
+
 app = Flask(__name__)
+
 CORS(app)
+app.config['SECRET_KEY'] = 'you-will-never-guess'
 
 DATABASE = './data/database.db'
+
+
+
 
 def get_db():
     if 'db' not in g:

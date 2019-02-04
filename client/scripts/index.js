@@ -60,3 +60,28 @@ const renderCards = (houses) => {
 }
 
 startApp()
+
+function myFunction() {
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+myFunction()
+
+function check(form)
+{
+ 
+ if(form.userid.value == "koguz" && form.pswrd.value == "1234")
+  {
+    window.open('index.html', "_self")
+    
+  }
+ else
+ {
+   alert("Username or Password is incorrect!")
+  }
+}
