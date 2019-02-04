@@ -5,8 +5,7 @@ body {
   margin: 0;
   padding: 0;
   overflow-y: scroll;
- 	background-image: url(C:/Users/kemal/Documents/GitHub/mentoring-demo-house-list/client/dark_spots_texture_background_50355_1920x1080.jpg);
-  
+ 	background-image: url(../images/dark_spots_texture_background_50355_1920x1080.jpg);
 	-webkit-filter: blur(0px);
 }
 
@@ -42,7 +41,7 @@ html {
 .house-card h2 {
   text-align: center;
   cursor: pointer
-  }
+}
 
 .house-picture-container {
   background-color: green;
@@ -68,7 +67,7 @@ html {
   
 }
 
-#myDIV {
+#login-container {
   display: flex;
   font-family: 'Exo', sans-serif;
   text-shadow: 4px 4px 4px #aaa;

@@ -4,16 +4,12 @@ import sqlite3
 from flask_cors import CORS
 
 
-
 app = Flask(__name__)
 
 CORS(app)
 app.config['SECRET_KEY'] = 'you-will-never-guess'
 
 DATABASE = './data/database.db'
-
-
-
 
 def get_db():
     if 'db' not in g:
@@ -33,15 +29,25 @@ def initdb_command():
     init_db()
     print('Initialized database')
 
+
 @app.teardown_appcontext
 def close_connection(exception):
     db = getattr(g, '_database', None)
     if db is not None:
         db.close()
 
+@app.route("/")
+def home():
+    return render_template('index.html')
+
+@app.route("/login")
+def login():
+    return render_template('login.html')
+
+
 @app.route('/houses')
 def houses():
-  cur = get_db().cursor()
-  cur.execute("select * from houses")
-  rows = cur.fetchall()
-  return app.response_class(json.dumps( [dict(ix) for ix in rows]), mimetype="application/json")
+    cur = get_db().cursor()
+    cur.execute("select * from houses")
+    rows = cur.fetchall()
+    return app.response_class(json.dumps([dict(ix) for ix in rows]), mimetype="application/json")
