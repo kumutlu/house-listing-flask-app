@@ -5,14 +5,31 @@ const startApp = () => {
     .catch(err => console.error(err))
 }
 
+const deleteHouse = (id) => {
+  console.log("hello")
+  console.log(id)
+
+  fetch(`http://127.0.0.1:5000/houses/${id}`, {
+    method: "DELETE",
+  })
+    .then(_ => {
+      console.log("I should redirect")
+      return window.location.href = `http://127.0.0.1:5000/`
+    })
+    .catch(err => console.error(err))
+}
+
 // Render house cards
 const renderCards = (houses) => {
   for (let i = 0; i < houses.length; i++) {
     const container = document.getElementById('list-container')
     const house = houses[i]
-
     const newHouse = document.createElement('div')
     newHouse.className = 'house-card'
+
+    newHouse.addEventListener('click', function () {
+      return window.location.href = `http://127.0.0.1:5000/houses/${house.id}`
+    })
 
     const pictureContainer = document.createElement('div')
     pictureContainer.className = 'house-picture-container'
@@ -71,17 +88,3 @@ function myFunction() {
 }
 
 myFunction()
-
-function check(form)
-{
- 
- if(form.userid.value == "koguz" && form.pswrd.value == "1234")
-  {
-    window.open('index.html', "_self")
-    
-  }
- else
- {
-   alert("Username or Password is incorrect!")
-  }
-}

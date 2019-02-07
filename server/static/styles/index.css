@@ -17,14 +17,15 @@ html {
 .body h1  {
   text-align: center;  
 }
+
 #list-container {
   display: flex;
   font-family: 'Exo', sans-serif;
   text-shadow: 4px 4px 4px #aaa;
-  flex-direction: row;
+  flex-flow: row wrap;
   justify-content: space-around;
   align-items: center;
-  width: 90%;
+  max-width: 50%;
   min-height: 75vh;
   border: 2px solid #F29E20;
   margin: 100px auto 100px auto;
@@ -35,7 +36,13 @@ html {
   background-color: rgb(231, 212, 212);
   height: 550px;
   width: 400px;
+  margin: 20px;
   border-radius: 12px;
+}
+
+.house-detail {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .house-card h2 {

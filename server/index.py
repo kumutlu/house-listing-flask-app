@@ -13,7 +13,6 @@ DATABASE = './data/database.db'
 authenticated = False
 
 
-
 def get_db():
     if 'db' not in g:
         g.db = sqlite3.connect(DATABASE)
@@ -49,13 +48,13 @@ def home():
 
 
 @app.route('/', methods=['GET', 'POST'])
-def addForm():
+def login():
     global authenticated
     error = False
     if request.method == 'POST':
         if request.form['username'] != 'admin' or request.form['password'] != 'admin':
             error = True
-            flash ("You know nothing Jon Snow!")
+            flash("You know nothing Jon Snow!")
             # if error == True:
             #     flash ("You know nothing Jon Snow!")
             # else:
@@ -74,27 +73,14 @@ def logout():
     return redirect(url_for('home'))
 
 
-@app.route('/houses')
+@app.route('/houses', methods=['GET', 'POST'])
 def houses():
-    cur = get_db().cursor()
-    cur.execute('select * from houses')
-    rows = cur.fetchall()
-    return app.response_class(json.dumps([dict(ix) for ix in rows]), mimetype='application/json')
-
-@app.route('/enternew')
-def new_house():
-    # return redirect(url_for('addFormHome'))
-    return render_template('addFormHome.html')
-
-
-@app.route('/addFormHome', methods=['POST', 'GET'])
-def addFormHome():
     if request.method == 'GET':
         cur = get_db().cursor()
-        cur.execute("select * from houses")
+        cur.execute('select * from houses')
         rows = cur.fetchall()
-        return render_template("list.html", rows=rows)
-    if request.method == 'POST':
+        return app.response_class(json.dumps([dict(ix) for ix in rows]), mimetype='application/json')
+    elif request.method == 'POST':
         try:
             name = request.form['name']
             location = request.form['location']
@@ -112,10 +98,38 @@ def addFormHome():
         except:
             get_db().rollback()
             msg = "error in insert operation"
-
         finally:
             return render_template("result.html", msg=msg)
             get_db().close()
+
+
+@app.route('/houses/<int:house_id>', methods=['GET', 'PATCH', 'DELETE'])
+def houseById(house_id):
+    if request.method == 'GET':
+        cur = get_db().cursor()
+        cur.execute('select * from houses where houses.id = %s' % house_id)
+        house = dict(cur.fetchone())
+        return render_template('houseDetails.html', house=house)
+    elif request.method == 'DELETE':
+        try:
+            cur = get_db().cursor()
+            cur.execute('DELETE FROM houses where houses.id = %s' % house_id)
+
+            get_db().commit()
+            msg = "Record successfully deleted"
+        except:
+            get_db().rollback()
+            msg = "error in delete operation"
+        finally:
+            return render_template("result.html", msg=msg)
+            get_db().close()
+
+
+@app.route('/enternew')
+def new_house():
+    # return redirect(url_for('addFormHome'))
+    return render_template('addFormHome.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)

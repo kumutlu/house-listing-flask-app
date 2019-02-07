@@ -1,0 +1,33 @@
+<!doctype html>
+
+<head>
+  <link rel="stylesheet" href="../static/styles/index.css">
+</head>
+<html>
+
+<body>
+  <div class="house-card house-detail">
+    <div class='house-picture-container'>
+      <img src="{{ house.picture }}">
+    </div>
+    <h2>{{ house.name }}</h2>
+    <ul>
+      <li>Price: {{ house.price }}</li>
+      <li>Location: {{ house.location }}</li>
+      <li>Size: {{ house.size }}</li>
+    </ul>
+    <div class="house-description">
+      <h3>Description</h3>
+      <p>{{ house.description }}</p>
+    </div>
+  </div>
+
+  <button class="sk2" onclick="deleteHouse('{{ house.id }}')">Delete</button>
+
+
+  <script src="../static/scripts/index.js"></script>
+
+
+</body>
+
+</html>
