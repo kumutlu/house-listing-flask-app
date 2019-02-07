@@ -18,17 +18,44 @@
     
     <div>
         {% if authenticated == False %}
-        <a href="/login">
-            <button class="button">Login</button>
-        </a>
+            <button class="sk2" style="vertical-align:middle" onclick="myFunction()">Login</button>
+            
+            <div id="myDIV">
+                <div id="login-container"> 
+                    <form name="login" class="login" action="" method = "POST">
+                         
+                        <input type="text" placeholder="Username" name="username" value="{{
+                        request.form.username }}"><br>
+                        <input type="password" placeholder="Password" name="password" value="{{
+                        request.form.password }}"><br>
+                        <input class= "button" type= "submit" value="Login" />
+                    </form>
+                {% if error == True %}
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <h2>{{message }}</h2>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                {% endif %}    
+                </div>
+
         {% else %}
-        <a href="/logout">
-            <button class="button">Logout</button>
-        </a>
-        <a href="/houses/addForm">
-            <button class="button">Add house</button>
-        </a>
-        {% endif %}
+            <a href="/logout">
+                <button class="sk2" style="vertical-align:middle"><span>Logout </span></button>
+            </a>
+            <a href="/enternew">
+                <button class="sk2" style="vertical-align:middle"><span>Add house </span></button>
+            </a>
+        {% endif %}    
+        
+        
+        
+        </div>
+       
+        
+        
     </div>
 
     <div id="list-container"></div>
@@ -37,3 +64,4 @@
 </body>
 
 </html>
+

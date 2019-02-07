@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request, g, jsonify, redirect, url_for
+from flask import Flask, render_template, request, g, jsonify, redirect, url_for, flash
 import json
 import sqlite3
 from flask_cors import CORS
+
 app = Flask(__name__)
 
 CORS(app)
@@ -10,6 +11,7 @@ app.config['SECRET_KEY'] = 'you-will-never-guess'
 DATABASE = './data/database.db'
 
 authenticated = False
+
 
 
 def get_db():
@@ -46,17 +48,23 @@ def home():
     return render_template('index.html', authenticated=authenticated)
 
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
+@app.route('/', methods=['GET', 'POST'])
+def addForm():
     global authenticated
-    error = None
+    error = False
     if request.method == 'POST':
         if request.form['username'] != 'admin' or request.form['password'] != 'admin':
-            error = 'Invalid Credentials. Please try again.'
+            error = True
+            flash ("You know nothing Jon Snow!")
+            # if error == True:
+            #     flash ("You know nothing Jon Snow!")
+            # else:
+            #     return redirect(url_for('home'))
         else:
             authenticated = True
             return redirect(url_for('home'))
-    return render_template('login.html', error=error)
+    return redirect(url_for('home'))
+    # return render_template('index.html', error=error)
 
 
 @app.route('/logout')
@@ -72,3 +80,42 @@ def houses():
     cur.execute('select * from houses')
     rows = cur.fetchall()
     return app.response_class(json.dumps([dict(ix) for ix in rows]), mimetype='application/json')
+
+@app.route('/enternew')
+def new_house():
+    # return redirect(url_for('addFormHome'))
+    return render_template('addFormHome.html')
+
+
+@app.route('/addFormHome', methods=['POST', 'GET'])
+def addFormHome():
+    if request.method == 'GET':
+        cur = get_db().cursor()
+        cur.execute("select * from houses")
+        rows = cur.fetchall()
+        return render_template("list.html", rows=rows)
+    if request.method == 'POST':
+        try:
+            name = request.form['name']
+            location = request.form['location']
+            price = request.form['price']
+            size = request.form['size']
+            description = request.form['description']
+            picture = request.form['picture']
+
+            cur = get_db().cursor()
+            cur.execute("INSERT INTO houses (name, location, price, size, description, picture) "
+                        "VALUES(?, ?, ?, ?, ?, ?)", (name, location, price, size, description, picture))
+
+            get_db().commit()
+            msg = "Record successfully added"
+        except:
+            get_db().rollback()
+            msg = "error in insert operation"
+
+        finally:
+            return render_template("result.html", msg=msg)
+            get_db().close()
+
+if __name__ == '__main__':
+    app.run(debug=True)

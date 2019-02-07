@@ -67,55 +67,14 @@ html {
   
 }
 
-#login-container {
-  display: flex;
-  font-family: 'Exo', sans-serif;
-  text-shadow: 4px 4px 4px #aaa;
-  justify-content: space-around;
-  flex-direction: row;
-  align-items: center;
-  width: 30%;
-  min-height: 15vh;
-  margin: auto auto 100px auto;
-  border-radius: 12px
-}
-
-.button {
-  align-items: center;
-  text-align: center;
-  display: flex; 
-  background-color: #008CBA;
-  width: 15%;
-  min-height: 5vh;
-  justify-content: space-around;
-  border: 2px solid #008CBA;
-  color: white;
-  border-radius: 8px;
-  font-family: 'Exo', sans-serif;
-  padding: 10px;
-  display: flex;
-  font-family: 'Exo', sans-serif;
-  flex-direction: row;
-  font-size: 20px;
-  font-weight: 200;
-  margin: 10px auto 10px auto;
-  -webkit-transition-duration: 0.4s;
-  transition-duration: 0.4s;
-  cursor: pointer;
- 
-}
 
 
-.button:hover {
-  background-color: white;
-  color: #008CBA;
-}
 
 .header{
   align-items: center;
   text-align: center;
   display: flex;
-  width: 15%;
+  width: 300px;
   min-height: 5vh;
   justify-content: space-around;
   color: white;
@@ -133,6 +92,95 @@ html {
 
 .header div span{
   color: #F29E20 !important;
+}
+
+.addFormHeader{
+  align-items: center;
+  text-align: center;
+  display: flex;
+  width: 250px;
+  min-height: 5vh;
+  justify-content: space-around;
+  color: white;
+  font-family: 'Exo', sans-serif;
+  text-shadow: 4px 4px 4px #aaa;
+  flex-direction: row;
+  font-size: 25px;
+	font-weight: 200;
+  margin: 100px auto 0px auto;
+  padding: 10px;
+  border: 2px solid #F29E20;
+  border-radius: 10px;
+  position: absolute;
+  cursor: pointer
+}
+
+.addFormHeader div span{
+  color: #F29E20 !important;
+}
+
+.sk2 {
+  /* display: inline-block; */
+  border-radius: 8px;
+  background-color: #008CBA;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 18px;
+  padding: 15px;
+  width: 260px;
+  height: 50px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 10px auto 10px auto;
+  max-width: 50%;
+  display: flex;
+  font-family: 'Exo', sans-serif;
+  text-shadow: 4px 4px 4px #aaa;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center
+
+
+}
+
+.sk2 span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.sk2 span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.sk2:hover span {
+  padding-right: 25px;
+}
+
+.sk2:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+
+#login-container {
+  display: flex;
+  font-family: 'Exo', sans-serif;
+  text-shadow: 4px 4px 4px #aaa;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+  width: 30%;
+  min-height: 15vh;
+  margin: 10px auto 10px auto;
+  border-radius: 12px
 }
 
 .login{
@@ -157,6 +205,18 @@ html {
 	padding: 4px;
 }
 
+.login textarea[type=text]{
+	width: 250px;
+	height: 30px;
+	background: transparent;
+	border: 1px solid rgba(255,255,255,0.6);
+	border-radius: 6px;
+	color: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 4px;
+}
 .login input[type=password]{
 	width: 250px;
 	height: 30px;
@@ -183,7 +243,7 @@ html {
 	font-size: 16px;
 	font-weight: 400;
 	padding: 6px;
-	margin-top: 10px;
+	margin: 10px auto 10px auto;
 }
 
 .login input[type=submit]:hover{
@@ -205,6 +265,132 @@ html {
 }
 
 .login input[type=submit]:focus{
+	outline: none;
+}
+
+::-webkit-input-placeholder{
+   color: rgba(255,255,255,0.6);
+}
+
+::-moz-input-placeholder{
+   color: rgba(255,255,255,0.6);
+}
+s
+.error {
+  align-items: center;
+  text-align: center;
+  display: flex;
+  width: 260px;
+  height: 50px;
+  justify-content: space-around;
+  color: white;
+  font-family: 'Exo', sans-serif;
+  flex-direction: row;
+  font-size: 35px;
+	font-weight: 200;
+  margin: 100px auto 100px auto;
+  padding: 10px;
+  border: 2px solid white;
+  border-radius: 10px;
+  
+}
+
+#addForm-container {
+  display: flex;
+  font-family: 'Exo', sans-serif;
+  text-shadow: 4px 4px 4px #aaa;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+  width: 30%;
+  min-height: 15vh;
+  margin: 10px auto 10px auto;
+  border-radius: 12px
+}
+
+.addForm{
+	position: absolute;
+	top: calc(50% - 175px);
+	left: calc(50% - 140px);
+	height: 200px;
+	width: 350px;
+	padding: 10px;
+}
+
+.addForm input[type=text]{
+	width: 250px;
+	height: 40px;
+	background: transparent;
+	border: 1px solid rgba(255,255,255,0.6);
+	border-radius: 6px;
+	color: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 4px;
+}
+
+
+.addForm textarea[type=text]{
+	width: 250px;
+	height: 70px;
+	background: transparent;
+	border: 1px solid rgba(255,255,255,0.6);
+	border-radius: 6px;
+	color: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 4px;
+}
+.addForm input[type=number]{
+	width: 250px;
+	height: 40px;
+	background: transparent;
+	border: 1px solid rgba(255,255,255,0.6);
+	border-radius: 6px;
+	color: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 4px;
+	
+}
+
+.addForm input[type=submit]{
+	width: 250px;
+	height: 40px;
+	background: #fff;
+	border: 1px solid #fff;
+	cursor: pointer;
+	border-radius: 6px;
+	color: #a18d6c;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 6px;
+	margin: 10px auto 10px auto;
+}
+
+.addForm input[type=submit]:hover{
+	opacity: 0.8;
+}
+
+.addForm input[type=submit]:active{
+	opacity: 0.6;
+}
+
+.addForm input[type=text]:focus{
+	outline: none;
+	border: 1px solid rgba(255,255,255,0.9);
+}
+
+.addForm input[type=password]:focus{
+	outline: none;
+	border: 1px solid rgba(255,255,255,0.9);
+}
+
+.addForm input[type=submit]:focus{
 	outline: none;
 }
 
