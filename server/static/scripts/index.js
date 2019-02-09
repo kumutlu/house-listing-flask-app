@@ -5,19 +5,33 @@ const startApp = () => {
     .catch(err => console.error(err))
 }
 
-const deleteHouse = (id) => {
-  console.log("hello")
-  console.log(id)
+// const deleteHouse = (id) => {
+//   console.log("hello")
+//   console.log(id)
 
-  fetch(`http://127.0.0.1:5000/houses/${id}`, {
-    method: "DELETE",
-  })
-    .then(_ => {
-      console.log("I should redirect")
-      return window.location.href = `http://127.0.0.1:5000/`
-    })
-    .catch(err => console.error(err))
-}
+//   fetch(`http://127.0.0.1:5000/houses/${id}`, {
+//     method: "DELETE",
+//   })
+//     .then(_ => {
+//       console.log("I should redirect")
+//       return window.location.href = `http://127.0.0.1:5000/`
+//     })
+//     .catch(err => console.error(err))
+// }
+
+// const editHouse = (id) => {
+//   console.log("hello")
+//   console.log(id)
+
+//   fetch(`http://127.0.0.1:5000/houses/${id}`, {
+//     method: "POST",
+//   })
+//     .then(_ => {
+//       console.log("I should redirect")
+//       return window.location.href = `http://127.0.0.1:5000/`
+//     })
+//     .catch(err => console.error(err))
+// }
 
 // Render house cards
 const renderCards = (houses) => {

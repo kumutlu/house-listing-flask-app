@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "demo_env\\Scripts\\python.exe"
+    "python.pythonPath": "C:\\Users\\oumut\\AppData\\Local\\Programs\\Python\\Python37-32\\python.exe",
+    "python.linting.pylintEnabled": true
 }

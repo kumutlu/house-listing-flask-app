@@ -72,7 +72,7 @@ def logout():
     authenticated = False
     return redirect(url_for('home'))
 
-
+# Add House
 @app.route('/houses', methods=['GET', 'POST'])
 def houses():
     if request.method == 'GET':
@@ -101,16 +101,18 @@ def houses():
         finally:
             return render_template("result.html", msg=msg)
             get_db().close()
+    
 
 
-@app.route('/houses/<int:house_id>', methods=['GET', 'PATCH', 'DELETE'])
+#Delete House
+@app.route('/houses/<int:house_id>', methods=['GET', 'POST', 'DELETE', ])
 def houseById(house_id):
     if request.method == 'GET':
         cur = get_db().cursor()
         cur.execute('select * from houses where houses.id = %s' % house_id)
         house = dict(cur.fetchone())
         return render_template('houseDetails.html', house=house)
-    elif request.method == 'DELETE':
+    elif request.method == 'POST':
         try:
             cur = get_db().cursor()
             cur.execute('DELETE FROM houses where houses.id = %s' % house_id)
@@ -125,11 +127,44 @@ def houseById(house_id):
             get_db().close()
 
 
+@app.route('/editHouse/<int:house_id>', methods=['GET', 'POST', 'DELETE', ])
+def editHouse(house_id):
+    if request.method == 'GET':
+        cur = get_db().cursor()
+        cur.execute('select * from houses where id = %s' % house_id)
+        house = dict(cur.fetchone())
+        return render_template('editHouse.html', house=house)
+    elif request.method == 'POST':
+        try:
+            name = request.form['name']
+            location = request.form['location']
+            price = request.form['price']
+            size = request.form['size']
+            description = request.form['description']
+            picture = request.form['picture']
+
+            cur = get_db().cursor()
+            cur.execute ("UPDATE houses SET name=?, Location=?, price=?, size=?, description=?, picture=? WHERE id=?" ,(name, location, price, size, description, picture, house_id))
+            
+            get_db().commit()
+            msg = "Record successfully updated"
+        except:
+            get_db().rollback()
+            msg = "Error in update operation"
+        finally:
+            return render_template("result.html", msg=msg)
+            get_db().close()
+    
+
+
+
 @app.route('/enternew')
 def new_house():
     # return redirect(url_for('addFormHome'))
     return render_template('addFormHome.html')
 
+#edit House
+ 
 
 if __name__ == '__main__':
     app.run(debug=True)

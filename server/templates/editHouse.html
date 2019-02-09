@@ -12,13 +12,17 @@
             <button class="sk2" style="vertical-align:middle"><span> Go Back to Homepage </span></button>
         </a>
         
+        
         <div id="addForm-container"> 
-                <div class="addFormHeader">
-                    <div>House<span>Informations</span></div>
-                  
-                </div> 
+            <div class="addFormHeader">
+                <div>House<span>Edit</span></div>
+              
+            </div> 
+            <br>
+            <br>
+            
                 
-                <form name="addForm" class="addForm" action = "{{ url_for('houses') }}" method = "POST">
+                <form name="addForm" class="addForm" action = "{{ url_for('editHouse', house_id=house.id) }}" method = "POST">
             {% if authenticated == False %}
                     <a href="/">
                         <button class="sk2" style="vertical-align:middle"><span> You Should Login First </span></button>
@@ -26,19 +30,19 @@
             {% else %}
                             
                         <br>
-                        <input type = "text" name = "name" placeholder = "Title"/><br>
+                        <input type = "text" name = "name" value = "{{ house.name }}"/><br>
                         <br>
-                        <input type = "text" name = "location" placeholder = "Location"/><br>
+                        <input type = "text" name = "location" value = "{{ house.location }}"/><br>
                         <br>
-                        <input type = "number" name = "price" placeholder = "Price"/><br>
+                        <input type = "number" name = "price" value = "{{ house.price }}"/><br>
                         <br>
-                        <input type = "number" name = "size" placeholder = "Size"/><br>
+                        <input type = "number" name = "size" value = "{{ house.size }}"/><br>
                         <br>
-                        <textarea type= "text" name="description" placeholder="Enter Description Here" value = "Description"></textarea><br>
+                        <textarea type= "text" name="description" >"{{ house.description }}"</textarea><br>
                         <br>
-                        <input type = "text" name = "picture" placeholder = "Picture" /><br>
+                        <input type = "text" name = "picture" value = "{{ house.picture }}"/><br>
                         <br>
-                        <input class= "button" type = "submit" value = "Add house" /><br>
+                        <input class= "button" type = "submit" value = "Update" /><br>
                         
                 </form>
             {% endif %} 

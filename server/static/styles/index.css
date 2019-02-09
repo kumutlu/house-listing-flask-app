@@ -90,7 +90,7 @@ html {
   flex-direction: row;
   font-size: 35px;
 	font-weight: 200;
-  margin: 100px auto 100px auto;
+  margin: 40px auto 100px auto;
   padding: 10px;
   border: 2px solid #F29E20;
   border-radius: 10px;
@@ -114,7 +114,7 @@ html {
   flex-direction: row;
   font-size: 25px;
 	font-weight: 200;
-  margin: 100px auto 0px auto;
+  margin: 40px auto 100px auto;
   padding: 10px;
   border: 2px solid #F29E20;
   border-radius: 10px;
